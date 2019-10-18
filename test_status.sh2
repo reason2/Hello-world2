@@ -14,7 +14,7 @@ if [ $installed == $input ]; then
 	echo "This package is installed"
 	if [ $status == $inactive ]; then
 		echo "Dang it, it's turned off"
-		echo "Would you like to start it $input? 1 for yes, 2 for no:"
+		echo "Would you like to start $input? 1 for yes, 2 for no:"
 		select yn in "Yes" "No"; do
 			case $yn in
 				Yes ) systemctl start $input; break;;
@@ -23,6 +23,13 @@ if [ $installed == $input ]; then
 		done
 	else
 		echo "My status is $status"
+		echo "Do you wish to stop $input? 1 for yes, 2 for no:"
+		select yn in "Yes" "No"; do
+			case $yn in
+				Yes ) systemctl stop $input; break;;
+				No ) exit 0;;
+			esac
+		done
 	fi
 
 else
