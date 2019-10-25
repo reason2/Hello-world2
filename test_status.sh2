@@ -37,7 +37,7 @@ else
 	echo "Do you wish to install $input? 1 for yes, 2 for no:"
 	select yn in "Yes" "No"; do
 		case $yn in
-			Yes ) yum install -y $input; break;;
+			Yes ) yum install -y $input; systemctl start $input; break;;
 			No ) exit 0;;
 		esac
 	done
