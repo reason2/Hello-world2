@@ -28,7 +28,7 @@ def django_start():
     os.system('source /opt/django/django-env/bin/activate ' + \
       '&& python manage.py migrate')
     os.system('source /opt/django/django-env/bin/activate ' + \
-      '&& echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser(\'admin\',\'admin@newproject.com\',\'NTI300NTI300\')" + \
+      '&& echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser(\'admin\',\'admin@newproject.com\',\'NTI300NTI300\')" ' + \
       '&& | python manage.py shell')
     outputwithnewline = subprocess.check_output('curl -s checkip.dyndns.org | sed -e \'s/.*Current IP Address: //\' -e \'s/<.*$//\' ', shell=True)
     print outputwithnewline
