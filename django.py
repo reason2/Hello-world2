@@ -17,18 +17,18 @@ def django_install():
     print('activating virtualenv and installing django after pre-requirements have been met')
     os.system('source /opt/django/django-env/bin/activate && pip install django')
     os.chdir('/opt/django')
-    os.system('source /opt/django/django-env/bin/activate ' +\
-              '&& django-admin --version ' +\
-              '&& django-admin startproject project1' +\
+    os.system('source /opt/django/django-env/bin/activate ' + \
+              '&& django-admin --version ' + \
+              '&& django-admin startproject project1' + \
               '&& chown -R django /opt/django')
 
 def django_start():
     print('We will now commence the Django service')
     os.chdir('/opt/django/project1')
-    os.system('source /opt/django/django-env/bin/activate ' +\
+    os.system('source /opt/django/django-env/bin/activate ' + \
       '&& python manage.py migrate')
-    os.system('source /opt/django/django-env/bin/activate ' +\
-      '&& echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser(\'admin\',\'admin@newproject.com\',\'NTI300NTI300\')" +\
+    os.system('source /opt/django/django-env/bin/activate ' + \
+      '&& echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser(\'admin\',\'admin@newproject.com\',\'NTI300NTI300\')" + \
       '&& | python manage.py shell')
     outputwithnewline = subprocess.check_output('curl -s checkip.dyndns.org | sed -e \'s/.*Current IP Address: //\' -e \'s/<.*$//\' ', shell=True)
     print outputwithnewline
