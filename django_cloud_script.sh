@@ -34,3 +34,46 @@ def create_instance(compute, project, zone, name):
           
           # Specify the boot disk and the image to use as a source.
           'disks': [
+              {
+                  'boot': True,
+                  'autoDelete': True,
+                  'initializeParams': {
+                      'sourceImage':source_disk_image,
+                  }
+              }
+          ],
+          
+          # Specify a network interface with NAT to access the public
+          # internet.
+          'networkInterfaces': [{
+              'network': 'global/networks/default',
+              'accessCoufigs': [
+                  {'type': 'ONE_TO_ONE_NAT', 'name': 'External NAT'}
+              ]
+          }],
+          # Allow the instance to access cloud storage and logging.
+          'serviceAccounts': [{
+              'email': 'default',
+              'scopes': [
+                  'https://www.googleapis.com/auth/devstorage.read_write',
+                  'https://www.googleapis.com/auth/logging.write'
+              ]
+          }],
+          
+          # Enable https/http for select instances
+          "labels": {
+          "http-server": "",
+          "https-server": ""
+          },
+          
+          "tags": {
+          "items": [
+          "http-server",
+          "https-server"
+          ]
+          },
+          
+            # Metadata is readable from the instance oand allos you to
+            # pass configuration from deployment scripts to instances.
+            'metadata': {
+                'items': [{
