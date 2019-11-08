@@ -15,7 +15,7 @@ compute = discovery.build('compute', 'v1', credentials=credentials)
 
 project = 'nti-300-2019'
 zone = 'us-central1-a'
-name = 'django_unchained"
+name = 'django_cloud_script.sh"
 
 def list_instances(compute, project, zone):
     result = compute.instances().list(project=project, zone=zone).execute()
