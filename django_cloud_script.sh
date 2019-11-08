@@ -28,29 +28,29 @@ def create_instance(compute, project, zone, name):
     source_disk_image = image_response['selfLink']
     machine_type = "zones/%s/machineTYpes/f1-micro" % zone
       
-      config = {
-          'name': name,
-          'machineType'" machine_type,
+    config = {
+        'name': name,
+        'machineType'" machine_type,
           
-          # Specify the boot disk and the image to use as a source.
-          'disks': [
-              {
-                  'boot': True,
-                  'autoDelete': True,
-                  'initializeParams': {
-                      'sourceImage':source_disk_image,
-                  }
-              }
-          ],
-          
-          # Specify a network interface with NAT to access the public
-          # internet.
-          'networkInterfaces': [{
-              'network': 'global/networks/default',
-              'accessCoufigs': [
-                  {'type': 'ONE_TO_ONE_NAT', 'name': 'External NAT'}
-              ]
-          }],
+        # Specify the boot disk and the image to use as a source.
+        'disks': [
+            {
+                'boot': True,
+                'autoDelete': True,
+                'initializeParams': {
+                    'sourceImage':source_disk_image,
+                }
+            }
+        ],
+         
+        # Specify a network interface with NAT to access the public
+        # internet.
+        'networkInterfaces': [{
+            'network': 'global/networks/default',
+            'accessCoufigs': [
+                {'type': 'ONE_TO_ONE_NAT', 'name': 'External NAT'}
+            ]
+        }],
           # Allow the instance to access cloud storage and logging.
           'serviceAccounts': [{
               'email': 'default',
