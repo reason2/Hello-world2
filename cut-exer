@@ -1,0 +1,4 @@
+cut -f4 -d\| albums
+
+fieldname=$1
+cut -f$(getfield $fieldname) -d\| albums
