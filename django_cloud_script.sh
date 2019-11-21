@@ -2,8 +2,6 @@
 
 # this should be ran from the Google Cloud Shell
 # startup-script.sh must be in the same dir
-# please substitue your project and zone in the project and zone vars
-# please choose a name of than test3
 
 from oauth2client.client import GoogleCrendentials
 from googleapiclient import discovery
