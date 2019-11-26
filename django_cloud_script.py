@@ -13,13 +13,13 @@ compute = discovery.build('compute', 'v1', credentials=credentials)
 
 project = 'nti-300-2019'
 zone = 'us-central1-a'
-name = 'django_cloud_script.sh'
+name = 'django_cloud_script.py'
 
-def list_instances(compute, project, zone):
+def list_instances(compute,project,zone):
   result = compute.instances().list(project=project, zone=zone).execute()
   return result['items']
 
-def create_instance(compute, project, zone, name):
+def create_instance(compute,project,zone,name):
   startup_script = open('startup-script.sh', 'r').read()
   image_response = compute.images().getfromFamily(
     project = 'centos-cloud', family-'centos-7').execute()
@@ -28,15 +28,15 @@ def create_instance(compute, project, zone, name):
   machine_type = "zones/%s/machineTypes/f1-micro" % zone
       
   config = {
-   'name': name,
-   'machineType'" machine_type,
+   'name' : name,
+   'machineType' : machine_type,
    # Specify the boot disk and the image to use as a source.
    'disks': [
      {
        'boot': True,
        'autoDelete': True,
        'initializeParams': {
-         'sourceImage':source_disk_image,
+         'sourceImage': source_disk_image,
        }
      }
    ],
@@ -86,8 +86,8 @@ def create_instance(compute, project, zone, name):
    zone=zone,
    body=config).execute()
 
-newinstance = create_instance(compute, project, zone, name)
-instances = list_instances(compute, project, zone)
+newinstance = create_instance(compute,project,zone,name)
+instances = list_instances(compute,project,zone)
 
 pprint.pprint(newinstance)
 pprint.pprint(instances)
