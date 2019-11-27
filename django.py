@@ -23,7 +23,7 @@ enabled=1"""
     print(repo)
     with open("/etc/yum.repos.d/local-repo.repo","w+") as f:
         f.write(repo)
-      f.close()
+    f.close()
     
 def django_install():
     print('Activating virtualenv and installing django after pre-requirements have been met')
