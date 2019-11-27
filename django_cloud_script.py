@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # this should be ran from the Google Cloud Shell
-# startup-script.sh must be in the same dir
+# django.py must be in the same dir
 
 from oauth2client.client import GoogleCrendentials
 from googleapiclient import discovery
@@ -13,7 +13,7 @@ compute = discovery.build('compute', 'v1', credentials=credentials)
 
 project = 'nti-300-2019'
 zone = 'us-central1-a'
-name = 'django_cloud_script.py'
+name = 'django_final'
 
 def list_instances(compute,project,zone):
   result = compute.instances().list(project=project, zone=zone).execute()
