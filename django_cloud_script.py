@@ -3,7 +3,7 @@
 # this should be ran from the Google Cloud Shell
 # django.py must be in the same dir
 
-from oauth2client.client import GoogleCrendentials
+from oauth2client.client import GoogleCredentials
 from googleapiclient import discovery
 import pprint
 import json
@@ -16,13 +16,13 @@ zone = 'us-central1-a'
 name = 'django_final'
 
 def list_instances(compute,project,zone):
-  result = compute.instances().list(project=project, zone=zone).execute()
+  result = compute.instances().list(project=project,zone=zone).execute()
   return result['items']
 
 def create_instance(compute,project,zone,name):
-  startup_script = open('startup-script.sh', 'r').read()
-  image_response = compute.images().getfromFamily(
-    project = 'centos-cloud', family-'centos-7').execute()
+  startup_script = open('django.py', 'r').read()
+  image_response = compute.images().getFromFamily(
+    project = 'centos-cloud', family = 'centos-7').execute()
   
   source_disk_image = image_response['selfLink']
   machine_type = "zones/%s/machineTypes/f1-micro" % zone
@@ -44,7 +44,7 @@ def create_instance(compute,project,zone,name):
    # Specify a network interface with NAT to access the public internet.
    'networkInterfaces': [{
      'network': 'global/networks/default',
-     'accessCoufigs': [
+     'accessConfigs': [
        {'type': 'ONE_TO_ONE_NAT', 'name': 'External NAT'}
      ]
    }],
@@ -58,7 +58,7 @@ def create_instance(compute,project,zone,name):
      ]
    }],
           
-   # Enable https/http for select instances
+   # Enable http/https for select instances
    "labels": {
      "http-server": "",
      "https-server": ""
@@ -71,7 +71,7 @@ def create_instance(compute,project,zone,name):
      ]
    },
           
-   # Metadata is readable from the instance oand allos you to pass configuration from deployment scripts to instances.
+   # Metadata is readable from the instance and allows you to pass configuration from deployment scripts to instances.
    'metadata': {
      'items': [{
        # Startup script is automatically executed by the instance upon startup.
