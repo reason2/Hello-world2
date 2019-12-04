@@ -13,7 +13,7 @@ compute = discovery.build('compute', 'v1', credentials=credentials)
 
 project = 'helical-land-254202'
 zone = 'us-central1-a'
-name = 'django-cloud-script'
+name = 'django-final'
 
 def list_instances(compute,project,zone):
   result = compute.instances().list(project=project,zone=zone).execute()
