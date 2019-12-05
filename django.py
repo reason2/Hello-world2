@@ -30,9 +30,9 @@ def django_install():
     os.system('source /opt/django/django-env/bin/activate && pip install django')
     os.chdir('/opt/django')
     os.system('source /opt/django/django-env/bin/activate ' + \
-              '&& django-admin --version ' + \
-              '&& django-admin startproject project1' + \
-              '&& chown -R django /opt/django')
+      '&& django-admin --version ' + \
+      '&& django-admin startproject project1' + \
+      '&& chown -R django /opt/django')
 
 def django_start():
     print('Starting django service')
