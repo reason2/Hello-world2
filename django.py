@@ -22,7 +22,7 @@ enabled=1"""
     os.system('for file in $( ls /etc/yum.repos.d/ ); do mv /etc/yum.repos.d/$file /etc/yum.repos.d/$file.bak; done')
     print(repo)
     with open("/etc/yum.repos.d/local-repo.repo","w+") as f:
-        f.write(repo)
+      f.write(repo)
     f.close()
     
 def django_install():
